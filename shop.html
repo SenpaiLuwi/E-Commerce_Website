@@ -1,110 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="shop.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <link rel="icon" href="https://i.imgur.com/B17fjdE.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <title>KOLEHIYO ABOUT</title>
-    <script type="text/javascript" src="mobile.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-
-
+    <link rel="stylesheet" href="Shop.css">
+    <script src="https://kit.fontawesome.com/92d70a2fd8.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-    <body>
-        <header>
-            <a class="logo" href="HomePage.html"><img src="https://i.imgur.com/p5HhYiZ.png" alt="logo"></a>
-            <nav>
-                <ul class="nav__links">
-                    <li><a href="HomePage.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                </ul>
-            </nav>
-            <a class="cta" href="#">Cart</a>
-        </header>
+    <header>
+        <a class="logo" href="HomePage.html"><img src="https://i.imgur.com/p5HhYiZ.png" alt="logo"></a>
+        <div class="cta"><i class="fa-solid fa-cart-shopping"></i><p id="count">0</p></div>
+        <nav>
+            <ul class="nav__links">
+                <li><a href="HomePage.html">HOME</a></li>
+                <li><a href="Shop.html">SHOP</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div id="background-overlay" class="BackGround">
-        <div class="TitleContainers">
-            <section class="AboutTitle">
-                <div class="TitlesMain">SHOP Movemint</div>
-            </section>
-        </div>
-    </div>
-
-<div class="rowcontainer">
-    <div class="card">
-        <img src="https://i.imgur.com/1opNd3b.png" style="width:100%">
-        <h1>Adidas x BAPE Undefeated (Black)</h1>
-        <p class="price">$117.00</p>
-        <p><button>Add to Cart</button></p>
-      </div>
-
-      <div class="card">
-        <img src="https://i.imgur.com/mE5dPav.png" style="width:100%">
-        <h1>BAPE x Kanye West</h1>
-        <p class="price">$6,070.00</p>
-        <p><button>Add to Cart</button></p>
-      </div>
-
-      <div class="card">
-        <img src="https://i.imgur.com/NqCMBTG.png" style="width:100%">
-        <h1>Jordan 1 Retro High Off-White Chicago</h1>
-        <p class="price">$6,052</p>
-        <p><button>Add to Cart</button></p>
-      </div>
-</div>
-
-<div class="rowcontainer">
-<div class="card">
-    <img src="https://i.imgur.com/tlbLjyx.png" style="width:100%">
-    <h1>Nike Air Force 1 Low '07 Off-White MoMA</h1>
-    <p class="price">$9,416</p>
-    <p><button>Add to Cart</button></p>
-  </div>
-
-  <div class="card">
-    <img src="https://i.imgur.com/llBSNpo.png" style="width:100%">
-    <h1>Nike Travis Scott SB Dunk Low</h1>
-    <p class="price">$850</p>
-    <p><button>Add to Cart</button></p>
-  </div>
-
-  <div class="card">
-    <img src="https://imgur.com/LMk49Se.png" style="width:100%">
-    <h1>Nike Air Force 1 Low x Stussy (Fossil)</h1>
-    <p class="price">$276</p>
-    <p><button>Add to Cart</button></p>
-  </div>
-</div>
-    <footer class="Footer">
-        <div class="DescFooter">
-            <div class="FooterTitle">
-                Thank you for visiting MoveMint, and we look forward to sharing our innovations and passion with you.
-                Together, we can shape a brighter digital future. For any inquiries or collaborations, please reach out to us
-                <br><br>For any inquiries or collaborations, please reach out to us <br>
-
+    <div class="container">
+        <div id="root"></div>
+        <div class="sidebar">
+            <div class="head"><p>My Cart</p></div>
+            <div id="cartItem">Your cart is empty</div>
+            <div class="foot">
+                <h3>Total</h3>
+                <h2 id="total">$ 0.00</h2>
             </div>
         </div>
-    </footer>
-    
-<script>
-
-
-
-
-
-</script>
-
-
+    </div>
+    <script src="Shop.js"></script>
 </body>
-
 </html>
