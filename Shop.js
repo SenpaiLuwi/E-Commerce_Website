@@ -49,45 +49,74 @@ document.getElementById('root').innerHTML = categories.map((item) => {
             </div>
             <div class='bottom'>
                 <p>${title}</p>
-                <h2>$ ${price}.00</h2>` +
-                "<button onclick='addtocart(" + id + ")'>Add to cart</button>" +
-                `</div>
+                <h2>$ ${price}.00</h2>
+                <input type="number" id="quantity${id}" value="1" min="1">
+                <button onclick='addtocart(${id})'>Add to cart</button>
+            </div>
         </div>`
     );
 }).join('');
 
 var cart = [];
 
-function addtocart(a) {
-    cart.push({ ...product[a] });
+function addtocart(id) {
+    const quantity = parseInt(document.getElementById(`quantity${id}`).value);
+    const existingItemIndex = cart.findIndex(item => item.id === id);
+
+    if (existingItemIndex !== -1) {
+        cart[existingItemIndex].quantity += quantity;
+    } else {
+        cart.push({ ...product[id], quantity });
+    }
+
     displaycart();
 }
 
-function delElement(a) {
-    cart.splice(a, 1);
+function delElement(index) {
+    cart.splice(index, 1);
     displaycart();
 }
 
 function displaycart() {
-    let j = 0, total = 0;
+    let total = 0;
     document.getElementById("count").innerHTML = cart.length;
     if (cart.length == 0) {
         document.getElementById('cartItem').innerHTML = "Your cart is empty";
-        document.getElementById("total").innerHTML = "$ " + 0 + ".00";
+        document.getElementById("total").innerHTML = "$ " + 0;
     } else {
-        document.getElementById("cartItem").innerHTML = cart.map((items) => {
-            var { image, title, price } = items;
-            total = total + price;
-            document.getElementById("total").innerHTML = "$ " + total.toFixed(2) + ".00";
+        document.getElementById("cartItem").innerHTML = cart.map((items, index) => {
+            var { image, title, price, quantity } = items;
+            const itemTotal = price * quantity;
+            total += itemTotal;
+            document.getElementById("total").innerHTML = "$ " + total.toFixed(2);
             return (
                 `<div class='cart-item'>
                     <div class='row-img'>
                         <img class='rowimg' src=${image}>
                     </div>
-                    <p style='font-size:12px;'>${title}</p>
-                    <h2 style='font-size: 15px;'>$ ${price}.00</h2>` +
-                    "<i class='fa-solid fa-trash' onclick='delElement(" + (j++) + ")'></i></div>"
+                    <div>
+                        <p style='font-size:18px; color=white;'>${title}</p>
+                        <label for="quantity">Quantity: </label>
+                        <input type="number" id="quantity${index}" value="${quantity}" min="1" onchange='updateQuantity(${index}, this.value)'>
+                    </div>
+                    <h2 style='font-size: 15px;'>$ ${itemTotal.toFixed(2)}</h2>
+                    <i class='fa-solid fa-trash' onclick='delElement(${index})'></i>
+                </div>`
             );
         }).join('');
     }
+}
+
+function checkout() {
+    const checkoutContent = generateCheckoutContent();
+    const blob = new Blob([checkoutContent], { type: "text/plain;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "checkout.json";
+    a.click();
+}
+
+function updateQuantity(index, newQuantity) {
+    cart[index].quantity = parseInt(newQuantity);
+    displaycart();
 }
